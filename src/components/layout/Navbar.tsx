@@ -5,12 +5,13 @@ import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-
 import { Menu, X } from "lucide-react";
 import { cn } from "../ui/cn";
 import { staggerContainer, fadeUp } from "@/lib/motion";
-import { LiquidButton } from "../liquid-glass-button";
 
 const navLinks = [
   { label: "Speisekarte", href: "#speisekarte" },
   { label: "Über uns", href: "#ueber-uns" },
-  { label: "Reservierung", href: "#kontakt" },
+  { label: "Galerie", href: "#galerie" },
+  { label: "Kontakt", href: "#lage" },
+
 ];
 
 export default function Navbar() {
@@ -61,16 +62,7 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <LiquidButton
-              size="sm"
-              className={cn(
-                "font-body font-semibold tracking-wide",
-                scrolled ? "text-brown" : "text-cream-warm"
-              )}
-              onClick={() => document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              Tisch reservieren
-            </LiquidButton>
+
           </nav>
 
           {/* Mobile Hamburger */}

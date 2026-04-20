@@ -4,19 +4,18 @@ export type WeekSchedule = {
   [day: number]: DaySlot[]; // 0 = Sunday, 1 = Monday, … 6 = Saturday
 };
 
-// Mo–So: 12:00–14:00 & 19:00–22:00 | Dienstag (2): Ruhetag
+// Mo–Mi: Ruhetag | Do–Sa: 17:30–23:00 | So: 12:00–14:00 & 17:00–21:00
 export const SCHEDULE: WeekSchedule = {
-  0: [{ open: 720, close: 840 }, { open: 1140, close: 1320 }], // Sunday
-  1: [{ open: 720, close: 840 }, { open: 1140, close: 1320 }], // Monday
-  2: [],                                                          // Tuesday — closed
-  3: [{ open: 720, close: 840 }, { open: 1140, close: 1320 }], // Wednesday
-  4: [{ open: 720, close: 840 }, { open: 1140, close: 1320 }], // Thursday
-  5: [{ open: 720, close: 840 }, { open: 1140, close: 1320 }], // Friday
-  6: [{ open: 720, close: 840 }, { open: 1140, close: 1320 }], // Saturday
+  0: [{ open: 720, close: 840 }, { open: 1020, close: 1260 }], // Sunday: 12–14 & 17–21
+  1: [],  // Monday — Ruhetag
+  2: [],  // Tuesday — Ruhetag
+  3: [],  // Wednesday — Ruhetag
+  4: [{ open: 1050, close: 1380 }], // Thursday: 17:30–23:00
+  5: [{ open: 1050, close: 1380 }], // Friday: 17:30–23:00
+  6: [{ open: 1050, close: 1380 }], // Saturday: 17:30–23:00
 };
 
 export function checkIsOpen(now: Date = new Date()): boolean {
-  // Always evaluate against German local time (CET/CEST), regardless of visitor timezone
   const formatter = new Intl.DateTimeFormat("de-DE", {
     timeZone: "Europe/Berlin",
     weekday: "short",

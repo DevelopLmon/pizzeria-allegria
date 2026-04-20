@@ -68,23 +68,23 @@ export default function Footer() {
 
               <div className="flex items-center gap-3 hover:text-terracotta transition">
                 <Phone size={16} className="text-terracotta" />
-                <a href="tel:+49042817171000">
-                  +49 04281 7171000
+                <a href="tel:042817171000">
+                  04281 7171000
                 </a>
               </div>
 
               <div className="flex items-center gap-3 hover:text-terracotta transition">
                 <Mail size={16} className="text-terracotta" />
-                <a href="mailto:ciao@pizzeria-allegria.de">
-                  ciao@pizzeria-allegria.de
+                <a href="mailto:pizzeria@allegria.de">
+                  pizzeria@allegria.de
                 </a>
               </div>
 
               <div className="flex items-start gap-3">
                 <Clock size={16} className="text-terracotta mt-0.5" />
                 <div>
-                  <div>Mo–So: 12:00–14:00 & 19:00–22:00</div>
-                  <div className="text-cream/50">Dienstag: Ruhetag</div>
+                  <div>Mo-So: 12:00–14:00 & 18:00 - 22:00 Uhr</div>
+                  <div className="text-cream/50">Di: Ruhetag</div>
                 </div>
               </div>
 
