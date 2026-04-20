@@ -70,14 +70,13 @@ export default function AboutSection() {
 
               <div className="flex flex-col gap-5 font-body text-base leading-relaxed text-brown-mid">
                 <p>
-                  Pizzeria Allegria wurde 1987 von Giuseppe und Maria Ferretti gegründet —
-                  zwei Neapolitanern mit einem einfachen Traum: die Aromen ihrer Heimat in
-                  dieser Stadt lebendig zu halten.
+                  Sehr verehrter Gast, bei uns erwartet Sie eine authentische italienische Küche, eine warme, einladende Atmosphäre und echte italienische Gastfreundschaft.
                 </p>
                 <p>
-                  Bis heute backen wir unsere Pizzen im original Holzofen, den Giuseppe
-                  damals aus Neapel mitbrachte. Unsere Pasta wird täglich von Hand gemacht —
-                  mit Mehl, Eiern und nichts als Zeit und Sorgfalt.
+                  Abseits von Stress und Alltag können Sie bei einem guten Glas italienischen Weins oder einem Espresso den Moment genießen und zur Ruhe kommen.
+                </p>
+                <p>
+                  Für uns bedeutet Essen mehr als nur satt zu werden. Es bedeutet, sich Zeit zu nehmen, das Leben zu genießen, gemeinsam zu lachen und schöne Gespräche zu führen.
                 </p>
                 <p>
                   <em className="font-display text-brown">Allegria</em> bedeutet Freude. Und genau das

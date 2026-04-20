@@ -59,21 +59,21 @@ export default function Footer() {
 
             <div className="flex flex-col gap-4 text-sm text-cream/70">
 
-              <div className="flex items-start gap-3 hover:text-cream transition">
+              <div className="flex items-start gap-3 hover:text-terracotta transition">
                 <MapPin size={16} className="text-terracotta mt-0.5" />
                 <span>
                   Lindenstraße 5 <br /> 27404 Zeven
                 </span>
               </div>
 
-              <div className="flex items-center gap-3 hover:text-cream transition">
+              <div className="flex items-center gap-3 hover:text-terracotta transition">
                 <Phone size={16} className="text-terracotta" />
                 <a href="tel:+49042817171000">
                   +49 04281 7171000
                 </a>
               </div>
 
-              <div className="flex items-center gap-3 hover:text-cream transition">
+              <div className="flex items-center gap-3 hover:text-terracotta transition">
                 <Mail size={16} className="text-terracotta" />
                 <a href="mailto:ciao@pizzeria-allegria.de">
                   ciao@pizzeria-allegria.de
@@ -108,7 +108,7 @@ export default function Footer() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="relative hover:text-terracotta transition-colors after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-terracotta after:transition-all hover:after:w-full"
+                  className="relative hover:text-terracotta transition-colors after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-terracotta after:transition-all hover:after:w-"
                 >
                   {link.label}
                 </a>
@@ -138,6 +138,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
+        
         <div className="border-t border-cream/10 mt-16 pt-6 text-center text-xs text-cream/40">
           © {new Date().getFullYear()} Pizzeria Allegria · Made with ♥ & 🍝 in Italy
         </div>

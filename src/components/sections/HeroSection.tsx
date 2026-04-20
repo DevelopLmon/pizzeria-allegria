@@ -4,11 +4,29 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { LiquidButton } from "../liquid-glass-button";
-import { ease } from "@/lib/motion";
 import { checkIsOpen } from "@/lib/opening-hours";
 import { useState, useEffect } from "react";
 
-const words = ["Buon", "Gusto,", "ogni", "giorno."];
+// 🍏 Apple-like easing (crucial)
+const smooth = [0.16, 1, 0.3, 1] as const;
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 18, filter: "blur(6px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.9, ease: smooth },
+  },
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { duration: 1.2, ease: smooth },
+  },
+};
 
 export default function HeroSection() {
   const reduceMotion = useReducedMotion();
@@ -16,22 +34,23 @@ export default function HeroSection() {
 
   useEffect(() => {
     setIsOpen(checkIsOpen());
-    const interval = setInterval(() => setIsOpen(checkIsOpen()), 60_000);
+    const interval = setInterval(() => setIsOpen(checkIsOpen()), 60000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Image */}
+
+      {/* Background */}
       <motion.div
         className="absolute inset-0"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.0 }}
+        initial={{ scale: 1.05, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.6, ease: smooth }}
       >
         <Image
-          src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1400&q=85"
-          alt="Neapolitanische Pizza aus dem Holzofen"
+          src="/pizza-hero.png"
+          alt="Italienische Pizza aus dem Holzofen"
           fill
           priority
           className="object-cover object-center"
@@ -39,110 +58,140 @@ export default function HeroSection() {
         />
       </motion.div>
 
-      {/* Overlay */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(105deg, rgba(44,24,16,0.92) 0%, rgba(44,24,16,0.65) 45%, rgba(44,24,16,0.25) 70%, transparent 100%)",
-        }}
-      />
+      {/* Soft overlay (slightly more cinematic) */}
+      <div className="absolute inset-0 bg-black/55" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
       {/* Content */}
       <div className="relative z-10 max-w-[72rem] mx-auto px-6 w-full pt-24 pb-16">
         <div className="max-w-[600px]">
+
           {/* Eyebrow */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease }}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
           >
-            <span className="inline-flex items-center gap-2 font-body text-sm font-semibold tracking-[0.18em] uppercase text-cream/70 mb-6">
-              <span className="w-8 h-px bg-terracotta" />
+            <span className="inline-flex items-center gap-2 font-body text-sm tracking-[0.2em] uppercase text-cream/60 mb-6">
+              <span className="w-10 h-px bg-terracotta/80" />
               Ristorante dal 1987
             </span>
           </motion.div>
 
-          {/* Headline — word by word */}
-          <h1
-            className="font-display font-bold text-cream-warm leading-tight mb-6"
-            style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}
+          {/* Headline */}
+          <motion.h1
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            transition={{ delay: 0.1 }}
+            className="font-display text-4xl md:text-6xl text-cream leading-tight mb-6"
           >
-            {words.map((word, i) => (
-              <motion.span
-                key={word + i}
-                className="inline-block mr-[0.25em]"
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.4 + i * 0.1, ease }}
-              >
-                {word}
-              </motion.span>
-            ))}
-          </h1>
+            Authentische Pizza
+            <br />
+            <span className="text-terracotta italic">
+              wie in Neapel
+            </span>
+          </motion.h1>
 
           {/* Subline */}
           <motion.p
-            className="font-body text-lg leading-relaxed text-cream/80 mb-10 max-w-[480px]"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.85, ease }}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            transition={{ delay: 0.18 }}
+            className="text-cream/75 text-lg md:text-xl mb-10 font-body max-w-[480px]"
           >
-            Hausgemachte Pasta, neapolitanische Pizzen aus dem Holzofen — echte
-            italienische Küche mitten in der Stadt.
+            Holzofen • Frische Zutaten • Italienisches Lebensgefühl direkt bei dir.
           </motion.p>
 
           {/* CTAs */}
           <motion.div
+            initial="hidden"
+            animate="show"
+            variants={fadeUp}
+            transition={{ delay: 0.25 }}
             className="flex flex-wrap gap-4"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.0, ease }}
           >
             <LiquidButton
               size="xl"
               className="font-body font-semibold text-cream-warm tracking-wide"
-              onClick={() => document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() =>
+                document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               Tisch reservieren
             </LiquidButton>
-            <LiquidButton
-              size="xl"
-              className="font-body font-semibold text-cream/80 tracking-wide"
-              onClick={() => document.getElementById("speisekarte")?.scrollIntoView({ behavior: "smooth" })}
+
+            <a
+              href="#speisekarte"
+              className="px-6 py-3 border border-cream/30 text-cream rounded-full hover:bg-white/10 transition-colors duration-500"
             >
-              Speisekarte entdecken
-            </LiquidButton>
+              Speisekarte ansehen
+            </a>
+          </motion.div>
+
+          {/* Trust */}
+          <motion.div
+            variants={fadeIn}
+            initial="hidden"
+            animate="show"
+            transition={{ delay: 0.4 }}
+            className="mt-10 text-sm text-cream/55 flex flex-col sm:flex-row gap-4"
+          >
+            <span>⭐ 4.5 / 5 Google Bewertungen</span>
+            <span>🍕 Über 1000 zufriedene Gäste</span>
+            <span>🇮🇹 Authentisch seit Jahren</span>
           </motion.div>
         </div>
       </div>
 
-      {/* Floating badge */}
+      {/* Status badge (floating glass feel) */}
       <motion.div
+        initial={{ opacity: 0, y: -10, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 1.2, delay: 0.6, ease: smooth }}
         className="absolute top-32 right-8 md:top-40 md:right-16 z-10"
-        initial={{ opacity: 0, rotate: -15, scale: 0 }}
-        animate={{ opacity: 1, rotate: -6, scale: 1 }}
-        transition={{ type: "spring", stiffness: 200, damping: 15, delay: 1.1 }}
       >
-        <div className={`font-body font-semibold text-sm px-4 py-3 rounded-full flex items-center gap-2 shadow-warm-lg transition-colors duration-500 ${isOpen ? "bg-terracotta text-cream-warm" : "bg-brown-mid text-cream/70"}`}>
-          <span className={`w-2 h-2 rounded-full ${isOpen ? "bg-olive-light animate-pulse" : "bg-cream/30"}`} />
-          {isOpen === null ? "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0" : isOpen ? "Jetzt geöffnet" : "Derzeit geschlossen"}
+        <div
+          className={`backdrop-blur-md font-body font-medium text-sm px-4 py-3 rounded-full flex items-center gap-2 shadow-lg transition-colors duration-700 ${
+            isOpen
+              ? "bg-terracotta/90 text-cream"
+              : "bg-black/30 text-cream/70"
+          }`}
+        >
+          <span
+            className={`w-2 h-2 rounded-full ${
+              isOpen ? "bg-green-300 animate-pulse" : "bg-white/30"
+            }`}
+          />
+          {isOpen === null ? " " : isOpen ? "Jetzt geöffnet" : "Derzeit geschlossen"}
         </div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator (no bounce, only float) */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-cream/50"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-cream/40"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.5 }}
+        transition={{ delay: 1 }}
       >
-        <span className="font-body text-xs tracking-widest uppercase">Scrollen</span>
+        <span className="text-xs tracking-widest uppercase font-body">
+          Scrollen
+        </span>
+
         <motion.div
-          animate={reduceMotion ? {} : { y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+          animate={
+            reduceMotion
+              ? {}
+              : { y: [0, 6, 0], opacity: [0.4, 0.8, 0.4] }
+          }
+          transition={{
+            repeat: Infinity,
+            duration: 2.8,
+            ease: "easeInOut",
+          }}
         >
-          <ChevronDown size={20} />
+          <ChevronDown size={18} />
         </motion.div>
       </motion.div>
     </section>
