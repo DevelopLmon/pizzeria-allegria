@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-terracotta: #C0724A;
+  --color-terracotta-light: #D4896A;
+  --color-terracotta-dark: #9A5538;
+  --color-cream: #F5ECD7;
+  --color-cream-warm: #FAF6EF;
+  --color-cream-muted: #EDE0C4;
+  --color-olive: #5C6B3A;
+  --color-olive-light: #7A8C4E;
+  --color-olive-dark: #3D4828;
+  --color-brown: #2C1810;
+  --color-brown-mid: #5C3D28;
+
+  /* Fonts */
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-body: var(--font-dm-sans), system-ui, sans-serif;
+
+  /* Shadows */
+  --shadow-warm: 0 4px 24px -4px rgba(44, 24, 16, 0.18);
+  --shadow-warm-lg: 0 12px 48px -8px rgba(44, 24, 16, 0.25);
+  --shadow-card: 0 2px 12px rgba(44, 24, 16, 0.10);
+}
+
+/* ─── Custom Properties ─────────────────────────────────── */
+:root {
+  --color-terracotta: #C0724A;
+  --color-cream: #F5ECD7;
+  --color-cream-warm: #FAF6EF;
+  --color-olive: #5C6B3A;
+  --color-brown: #2C1810;
+}
+
+/* ─── Base Reset ────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body), system-ui, sans-serif;
+  background-color: #FAF6EF;
+  color: #2C1810;
+  overflow-x: hidden;
+}
+
+/* ─── Noise Texture Overlay ─────────────────────────────── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='512' height='512' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ─── Focus Visible ─────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #C0724A;
+  outline-offset: 3px;
+}
+
+/* ─── Reduced Motion Support ────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Custom Scrollbar ──────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #FAF6EF; }
+::-webkit-scrollbar-thumb { background: #C0724A; border-radius: 4px; }
+
+/* ─── Selection Color ───────────────────────────────────── */
+::selection {
+  background-color: rgba(192, 114, 74, 0.25);
+  color: #2C1810;
+}
