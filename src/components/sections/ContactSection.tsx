@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { slideLeft, slideRight, viewportConfig } from "@/lib/motion";
 import SectionHeading from "../ui/SectionHeading";
-import Button from "../ui/Button";
+import { LiquidButton } from "../liquid-glass-button";
 import { cn } from "../ui/cn";
 
 type FormState = "idle" | "submitting" | "success" | "error";
@@ -53,7 +53,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <div className="font-semibold text-cream mb-0.5">Adresse</div>
-                  <div>Via della Allegria 12, 10115 Berlin-Mitte</div>
+                  <div>Lindenstraße 5, 27404 Zeven</div>
                 </div>
               </div>
 
@@ -63,8 +63,8 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <div className="font-semibold text-cream mb-0.5">Telefon</div>
-                  <a href="tel:+493012345678" className="hover:text-cream transition-colors">
-                    +49 30 1234 5678
+                  <a href="tel:+49042817171000" className="hover:text-cream transition-colors">
+                    +49 04281 7171000
                   </a>
                 </div>
               </div>
@@ -88,9 +88,8 @@ export default function ContactSection() {
                 <div>
                   <div className="font-semibold text-cream mb-1">Öffnungszeiten</div>
                   <div className="flex flex-col gap-0.5">
-                    <span>Mo–Fr: 12:00–14:30 & 17:30–23:00</span>
-                    <span>Sa–So: 12:00–23:30</span>
-                    <span className="text-cream/40">Montag: Ruhetag</span>
+                    <span>Mo–So: 12:00–14:00 & 19:00–22:00</span>
+                    <span className="text-cream/40">Dienstag: Ruhetag</span>
                   </div>
                 </div>
               </div>
@@ -256,10 +255,10 @@ export default function ContactSection() {
                     </label>
                   </div>
 
-                  <Button
+                  <LiquidButton
                     type="submit"
-                    size="lg"
-                    className="w-full mt-2 justify-center"
+                    size="xl"
+                    className="w-full mt-2 font-body font-semibold text-brown tracking-wide disabled:opacity-50 disabled:pointer-events-none"
                     disabled={formState === "submitting"}
                   >
                     {formState === "submitting" ? (
@@ -270,7 +269,7 @@ export default function ContactSection() {
                     ) : (
                       "Reservierung anfragen"
                     )}
-                  </Button>
+                  </LiquidButton>
                 </form>
               )}
             </div>

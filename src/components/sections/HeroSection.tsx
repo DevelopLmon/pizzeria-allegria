@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import Button from "../ui/Button";
+import { LiquidButton } from "../liquid-glass-button";
 import { ease } from "@/lib/motion";
 
 const words = ["Buon", "Gusto,", "ogni", "giorno."];
@@ -90,17 +90,20 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.0, ease }}
           >
-            <Button href="#kontakt" size="lg">
+            <LiquidButton
+              size="xl"
+              className="font-body font-semibold text-cream-warm tracking-wide"
+              onClick={() => document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" })}
+            >
               Tisch reservieren
-            </Button>
-            <Button
-              href="#speisekarte"
-              variant="ghost"
-              size="lg"
-              className="border-cream/50 text-cream hover:bg-cream/10 hover:border-cream"
+            </LiquidButton>
+            <LiquidButton
+              size="xl"
+              className="font-body font-semibold text-cream/80 tracking-wide"
+              onClick={() => document.getElementById("speisekarte")?.scrollIntoView({ behavior: "smooth" })}
             >
               Speisekarte entdecken
-            </Button>
+            </LiquidButton>
           </motion.div>
         </div>
       </div>

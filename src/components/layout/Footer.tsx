@@ -2,8 +2,8 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 function IconInstagram({ size = 20 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" />
       <circle cx="12" cy="12" r="4" />
       <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
     </svg>
@@ -12,7 +12,7 @@ function IconInstagram({ size = 20 }: { size?: number }) {
 
 function IconFacebook({ size = 20 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
     </svg>
   );
@@ -20,60 +20,83 @@ function IconFacebook({ size = 20 }: { size?: number }) {
 
 export default function Footer() {
   return (
-    <footer className="bg-brown text-cream/80 font-body">
-      <div className="max-w-[72rem] mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
-          {/* Col 1 — Brand */}
-          <div className="flex flex-col gap-4">
-            <a href="#" className="font-display font-bold italic text-3xl text-terracotta">
+    <footer className="relative bg-brown text-cream/80 font-body overflow-hidden">
+
+      {/* 🔥 Background Glow */}
+      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top,rgba(255,140,0,0.3),transparent_70%)]" />
+
+      <div className="relative max-w-[72rem] mx-auto px-6 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10">
+
+          {/* Brand */}
+          <div className="flex flex-col gap-5">
+            <a className="font-display font-bold italic text-4xl text-terracotta tracking-wide hover:scale-105 transition-transform">
               Allegria
             </a>
+
             <p className="text-sm text-cream/60 italic font-display">
               Cucina autentica dal 1987
             </p>
-            <p className="text-sm leading-relaxed text-cream/70 mt-2">
-              Echte neapolitanische Küche, täglich frisch zubereitet — mit Liebe und Leidenschaft.
-            </p>
-          </div>
 
-          {/* Col 2 — Contact & Hours */}
-          <div className="flex flex-col gap-4">
-            <h3 className="font-body font-semibold text-cream tracking-wide uppercase text-sm">
-              Besuchen Sie uns
-            </h3>
-            <div className="flex flex-col gap-3 text-sm text-cream/70">
-              <div className="flex items-start gap-3">
-                <MapPin size={16} className="text-terracotta shrink-0 mt-0.5" />
-                <span>Via della Allegria 12<br />10115 Berlin-Mitte</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone size={16} className="text-terracotta shrink-0" />
-                <a href="tel:+493012345678" className="hover:text-cream transition-colors">
-                  +49 30 1234 5678
-                </a>
-              </div>
-              <div className="flex items-center gap-3">
-                <Mail size={16} className="text-terracotta shrink-0" />
-                <a href="mailto:ciao@pizzeria-allegria.de" className="hover:text-cream transition-colors">
-                  ciao@pizzeria-allegria.de
-                </a>
-              </div>
-              <div className="flex items-start gap-3">
-                <Clock size={16} className="text-terracotta shrink-0 mt-0.5" />
-                <div>
-                  <div>Mo–Fr: 12:00–14:30 & 17:30–23:00</div>
-                  <div>Sa–So: 12:00–23:30</div>
-                  <div className="text-cream/50">Montag: Ruhetag</div>
-                </div>
-              </div>
+            <p className="text-sm leading-relaxed text-cream/70">
+              Echte neapolitanische Küche, täglich frisch zubereitet — mit Liebe,
+              Leidenschaft und einem Hauch Napoli.
+            </p>
+
+            {/* 🇮🇹 Italien Akzent */}
+            <div className="flex gap-1 mt-2">
+              <div className="w-6 h-[2px] bg-green-500" />
+              <div className="w-6 h-[2px] bg-white" />
+              <div className="w-6 h-[2px] bg-red-500" />
             </div>
           </div>
 
-          {/* Col 3 — Links & Social */}
-          <div className="flex flex-col gap-4">
+          {/* Contact */}
+          <div className="flex flex-col gap-5">
+            <h3 className="font-body font-semibold text-cream tracking-wide uppercase text-sm">
+              Besuchen Sie uns
+            </h3>
+
+            <div className="flex flex-col gap-4 text-sm text-cream/70">
+
+              <div className="flex items-start gap-3 hover:text-cream transition">
+                <MapPin size={16} className="text-terracotta mt-0.5" />
+                <span>
+                  Lindenstraße 5 <br /> 27404 Zeven
+                </span>
+              </div>
+
+              <div className="flex items-center gap-3 hover:text-cream transition">
+                <Phone size={16} className="text-terracotta" />
+                <a href="tel:+49042817171000">
+                  +49 04281 7171000
+                </a>
+              </div>
+
+              <div className="flex items-center gap-3 hover:text-cream transition">
+                <Mail size={16} className="text-terracotta" />
+                <a href="mailto:ciao@pizzeria-allegria.de">
+                  ciao@pizzeria-allegria.de
+                </a>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <Clock size={16} className="text-terracotta mt-0.5" />
+                <div>
+                  <div>Mo–So: 12:00–14:00 & 19:00–22:00</div>
+                  <div className="text-cream/50">Dienstag: Ruhetag</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Navigation + Social */}
+          <div className="flex flex-col gap-5">
             <h3 className="font-body font-semibold text-cream tracking-wide uppercase text-sm">
               Navigation
             </h3>
+
             <nav className="flex flex-col gap-2 text-sm text-cream/70">
               {[
                 { label: "Speisekarte", href: "#speisekarte" },
@@ -85,36 +108,38 @@ export default function Footer() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="hover:text-terracotta transition-colors"
+                  className="relative hover:text-terracotta transition-colors after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-terracotta after:transition-all hover:after:w-full"
                 >
                   {link.label}
                 </a>
               ))}
             </nav>
-            <div className="mt-2">
-              <p className="text-sm font-semibold text-cream mb-3">Folgen Sie uns</p>
+
+            {/* Social */}
+            <div className="mt-3">
+              <p className="text-sm font-semibold text-cream mb-3">
+                Folgen Sie uns
+              </p>
+
               <div className="flex gap-4">
-                <a
-                  href="#"
-                  aria-label="Instagram"
-                  className="text-cream/60 hover:text-terracotta transition-colors"
-                >
-                  <IconInstagram size={20} />
-                </a>
-                <a
-                  href="#"
-                  aria-label="Facebook"
-                  className="text-cream/60 hover:text-terracotta transition-colors"
-                >
-                  <IconFacebook size={20} />
-                </a>
+                {[IconInstagram, IconFacebook].map((Icon, i) => (
+                  <a
+                    key={i}
+                    href="#"
+                    className="p-2 rounded-full bg-white/5 hover:bg-terracotta hover:text-black transition-all duration-300 hover:scale-110 shadow-md"
+                  >
+                    <Icon size={18} />
+                  </a>
+                ))}
               </div>
             </div>
+
           </div>
         </div>
 
-        <div className="border-t border-cream/10 mt-12 pt-8 text-center text-xs text-cream/40">
-          © 2024 Pizzeria Allegria. Mit ♥ gemacht in Berlin.
+        {/* Bottom */}
+        <div className="border-t border-cream/10 mt-16 pt-6 text-center text-xs text-cream/40">
+          © {new Date().getFullYear()} Pizzeria Allegria · Made with ♥ & 🍝 in Italy
         </div>
       </div>
     </footer>
