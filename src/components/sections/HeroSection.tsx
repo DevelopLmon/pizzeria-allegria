@@ -5,11 +5,20 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { LiquidButton } from "../liquid-glass-button";
 import { ease } from "@/lib/motion";
+import { checkIsOpen } from "@/lib/opening-hours";
+import { useState, useEffect } from "react";
 
 const words = ["Buon", "Gusto,", "ogni", "giorno."];
 
 export default function HeroSection() {
   const reduceMotion = useReducedMotion();
+  const [isOpen, setIsOpen] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    setIsOpen(checkIsOpen());
+    const interval = setInterval(() => setIsOpen(checkIsOpen()), 60_000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -115,9 +124,9 @@ export default function HeroSection() {
         animate={{ opacity: 1, rotate: -6, scale: 1 }}
         transition={{ type: "spring", stiffness: 200, damping: 15, delay: 1.1 }}
       >
-        <div className="bg-terracotta text-cream-warm font-body font-semibold text-sm px-4 py-3 rounded-full flex items-center gap-2 shadow-warm-lg">
-          <span className="w-2 h-2 rounded-full bg-olive-light animate-pulse" />
-          Jetzt geöffnet
+        <div className={`font-body font-semibold text-sm px-4 py-3 rounded-full flex items-center gap-2 shadow-warm-lg transition-colors duration-500 ${isOpen ? "bg-terracotta text-cream-warm" : "bg-brown-mid text-cream/70"}`}>
+          <span className={`w-2 h-2 rounded-full ${isOpen ? "bg-olive-light animate-pulse" : "bg-cream/30"}`} />
+          {isOpen === null ? "\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0" : isOpen ? "Jetzt geöffnet" : "Derzeit geschlossen"}
         </div>
       </motion.div>
 

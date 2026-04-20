@@ -125,7 +125,7 @@ export default function Footer() {
                 {[IconInstagram, IconFacebook].map((Icon, i) => (
                   <a
                     key={i}
-                    href="#"
+                    href={i === 0 ? "https://www.instagram.com/pizzeria_allegria/" : "https://www.facebook.com/pages/Allegria/1673029109610808"}
                     className="p-2 rounded-full bg-white/5 hover:bg-terracotta hover:text-black transition-all duration-300 hover:scale-110 shadow-md"
                   >
                     <Icon size={18} />
